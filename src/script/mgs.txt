@@ -534,7 +534,7 @@ Campbell : Snake, I just want to give you back your purpose in life.
 
 Snake    : Colonel, you're retired. Why are you involved in this?
 
-Campbell : Becaue there aren't many people who know FOX-HOUND as well as I do.
+Campbell : Because there aren't many people who know FOX-HOUND as well as I do.
 
 Snake    : Is that really the only reason?
 
@@ -549,7 +549,7 @@ Campbell : Okay Snake. Sorry. I'll be frank. A person very dear to me is being
 
 Snake    : Who is it?
 
-Campbell : My neice. Meryl.
+Campbell : My niece. Meryl.
 
 Snake    : What was your niece doing here?
 
@@ -617,7 +617,7 @@ Naomi    : I also put some nootropics in there.
 
 Snake    : Say what?
 
-Naomi    : Nootropics. It's a class of drugs which wil help improve your
+Naomi    : Nootropics. It's a class of drugs which will help improve your
            mental functioning.
 
 Snake    : It'll make smarter huh? Anything else?
@@ -698,7 +698,7 @@ Snake    : Take it easy, I'm grateful.  If it wasn't for your suit and your
            shot I would have turned into a popsicle out there.
 
 Naomi    : An anti-freezing peptide Snake.  All of the Genome soldiers in this
-           excercise are using it.
+           exercise are using it.
 
 Snake    : I'm relieved to hear that.  Already tested, huh?  By the way, how's
            the diversionary operation going?
@@ -802,7 +802,7 @@ Snake    : I remember.  First I'm strip searched by Doctor Naomi here, and then
            all my weapons are taken away.  Imagine yourself put in that
            position.
 
-Naomi    : Well, if yck in one you make it back in one peice, maybe I'll let
+Naomi    : Well, if yck in one you make it back in one piece, maybe I'll let
            you do a strip search on me.
 
 Snake    : I'll hold you to that doctor.  By the way, sorry to dissapoint you
@@ -7550,3 +7550,9 @@ Ocelot   : Yes sir. The entire unit was wiped out. Those two are still alive.
            woman? Yes sir. I'll keep her under surveillance.
 
            Yes. Thank you. Good-bye. Mr. President.
+
+******************************************************************************
+
+  
+
+******************************************************************************

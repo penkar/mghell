@@ -21,19 +21,22 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.json$/,
+        loader: "json-loader"
+      },{
         test: /\.scss$/,
         include: PATHS.src,
         loaders: ['style', 'css', 'sass']
-      },
-      {
+      },{
         test: /.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['stage-0', 'es2015', 'react']
+          presets: ['react', 'es2015', 'stage-0']
         }
       }
     ]
   },
+  devtool: 'source-map',
   watch: true
 };
