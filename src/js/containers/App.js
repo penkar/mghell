@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Chapter from '../components/Chapter';
+import Title from '../components/Title';
 import MGS from '../../script/mgs.json';
-
-// const MGS = JSON.parse(mgs);
 
 export default class App extends Component{
   mgsDialogues(){
@@ -10,6 +9,11 @@ export default class App extends Component{
   }
 
   render(){
-    return <div>{::this.mgsDialogues()}</div>
+    return (
+      <div>
+        <Title />
+      </div>
+    )
+    // {::this.mgsDialogues()}
   }
 }
