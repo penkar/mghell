@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Chapter from '../components/Chapter';
+import TopBuffer from '../components/TopBuffer';
 import Title from '../components/Title';
 import MGS from '../../script/mgs.json';
 // 20928
@@ -23,37 +24,17 @@ export default class App extends Component{
     super(props);
     this.state = {
       height:window.innerHeight,
-      topOffset:'0px',
+      topOffset:0,
       offset:0,
     }
   }
 
-  componentWillMount(){
-    window.addEventListener('reseize', ::this.resize);
-    window.addEventListener('scroll', ::this.scroll);
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener('resize', ::this.resize);
-    window.removeEventListener('scroll', ::this.scroll);
-  }
-
-  resize(){
-    let height = window.innerHeight;
-    this.setState({height});
-  }
-
-  scroll(){
-    let topOffset = window.pageYOffset;
-    let offset = Math.max(0, topOffset / this.state.height * 100);
-    this.setState({offset, topOffset});
-  }
-
-  report(){
+  report(count){
 
   }
 
   mgsDialogues(){
+    console.log(this.state);
     return <Chapter dialog={MGS[0]} key={0} offset={this.state.offset} report={::this.report} index={1}/>;
     // return MGS.map((data, idx) => <Chapter dialog={data} key={idx} report={::this.report} index={idx}/>);
   }
@@ -62,8 +43,12 @@ export default class App extends Component{
     return (
       <div>
         <Title />
-        <span style={{fontSize:'4vh'}}>{::this.mgsDialogues()}</span>
+        <TopBuffer />
+        <span style={{fontSize:'4vh'}}>
+          {::this.mgsDialogues()}
+        </span>
       </div>
     )
+    // <TopBuffer height={this.state.height} offset={this.state.topOffset} />
   }
 }
