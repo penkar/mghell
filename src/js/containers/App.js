@@ -3,7 +3,15 @@ import Chapter from '../components/Chapter';
 import TopBuffer from '../components/TopBuffer';
 import Title from '../components/Title';
 import MGS from '../../script/mgs.json';
+
+
+import { connect } from 'react-redux'
+const mapStateToProps = (state) => {
+  return (state);
+}
+
 // 20928
+
 let mgs = [
   {1: 241, filtered:0, viewed:0},
   {2: 494, filtered:0, viewed:0},
@@ -19,7 +27,7 @@ let mgs = [
   {12: 2720, filtered:0, viewed:0},
 ]
 
-export default class App extends Component{
+class App extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -34,7 +42,6 @@ export default class App extends Component{
   }
 
   mgsDialogues(){
-    console.log(this.state);
     return <Chapter dialog={MGS[0]} key={0} offset={this.state.offset} report={::this.report} index={1}/>;
     // return MGS.map((data, idx) => <Chapter dialog={data} key={idx} report={::this.report} index={idx}/>);
   }
@@ -52,3 +59,5 @@ export default class App extends Component{
     // <TopBuffer height={this.state.height} offset={this.state.topOffset} />
   }
 }
+
+export default connect(mapStateToProps)(App)

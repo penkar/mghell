@@ -26,7 +26,7 @@ class Chapter extends Component {
     });
   }
 
-  render(){console.log(this.props.offset);
+  render(){ 
     return (
       <div>
         <ChapterTitle title={this.props.dialog.title} />
