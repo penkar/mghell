@@ -23,12 +23,18 @@ class Chapters extends Component{
     let chapterLines = [], count = 0, { lineSkip } = this.props;
     for(var j = 0; j < MGS.length; j++){
       let data = MGS[j];
-      chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`}/>);
       let dialog = data.dialog;
+      count++
+      if(count > lineSkip){
+        chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`}/>);
+      }
       for(var i = 0; i < dialog.length; i++ ){
         let line = dialog[i];
-        chapterLines.push(<Dialog data={line} key={`${j}_${i}`} />);
-        if(chapterLines.length > 50){
+        count++
+        if(count > lineSkip){
+          chapterLines.push(<Dialog data={line} key={`${j}_${i}`} />);
+        }
+        if(chapterLines.length > 30){
           return chapterLines;
         }
       }
@@ -36,7 +42,7 @@ class Chapters extends Component{
     return chapterLines;
   }
 
-  render(){
+  render(){ console.log(this.props);
     return(
       <div>
         { ::this.mgsDialogues() }
