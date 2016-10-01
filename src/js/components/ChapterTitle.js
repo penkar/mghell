@@ -1,13 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 
+let style = {
+  titleStyle:{
+    width:'100%',
+    textAlign:'left',
+    paddingLeft:'10px',
+    color:'red',
+  }
+}
+
 class ChapterTitle extends Component {
   static propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    chapter: PropTypes.number
   }
 
   render(){
+    let {title, chapter} = this.props;
     return (
-      <div>{this.props.title}</div>
+      <div style={style.titleStyle}>
+        Chapter {chapter}: {title}
+      </div>
     )
   }
 }

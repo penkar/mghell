@@ -26,7 +26,7 @@ class Chapters extends Component{
       let dialog = data.dialog;
       count++
       if(count > lineSkip){
-        chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`}/>);
+        chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`} chapter={j}/>);
       }
       for(var i = 0; i < dialog.length; i++ ){
         let line = dialog[i];

@@ -1,2 +1,5 @@
 export const RESET = "RESET"
 export const CHANGE_LINE = "CHANGE_LINE"
+export const CHANGE_CHAPTER = "CHANGE_CHAPTER"
+export const FILTER_CHARACTER = "FILTER_CHARACTER"
+export const FILTER_TERM = "FILTER_TERM"
