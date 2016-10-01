@@ -1,11 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { lineSkipAction } from '../actions/Actions'
 
-export default class TopBuffer extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    lineSkipAction: bindActionCreators(lineSkipAction, dispatch)
+  }
+}
+
+class TopBuffer extends Component {
   constructor(props){
     super(props);
     this.state = {
       height:window.innerHeight,
-      topOffset: window.pageYOffset,
+      oneLine: window.innerHeight / 25,
+      topOffset: 0,
       offset: 0,
     }
   }
@@ -21,23 +31,23 @@ export default class TopBuffer extends Component {
   }
 
   resize(){
-    let height = window.innerHeight;
-    this.setState({height});
+    let oneLine = window.innerHeight / 25, height = window.innerHeight;
+    this.setState({oneLine, height});
   }
 
-  scroll(){
+  scroll(){//console.log(this.state.offset);
+    let { height, oneLine } = this.state
     let topOffset = window.pageYOffset;
-    let offset = Math.max(0, topOffset / this.state.height * 100);
-    this.setState({offset, topOffset});
-  }
-
-  height(){
-    let { topOffset, offset, height } = this.state;
-    let oneLine = height / 25;
-    return Math.max(0, Math.floor( topOffset / oneLine ) * oneLine );
+    let { lineSkipAction } = this.props;
+    let lineCount = Math.floor( topOffset / oneLine );
+    let offset = Math.max(0, lineCount * oneLine);
+    lineSkipAction(lineCount);
+    this.setState({offset});
   }
 
   render(){
-    return (<div style={{height:`${::this.height()}px`}}></div>);
+    return <div style={{height:`${this.state.offset}px`}}></div>;
   }
 }
+
+export default connect(undefined, mapDispatchToProps)(TopBuffer)

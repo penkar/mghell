@@ -3,7 +3,6 @@ import ChapterTitle from './ChapterTitle';
 import Character from './Character';
 import Line from './Line';
 
-
 class Chapter extends Component {
   static propTypes = {
     dialog: PropTypes.object,
@@ -13,9 +12,6 @@ class Chapter extends Component {
   }
 
   text(){
-    // for(let i = 0; i < 50; i++){
-    //
-    // }
     return this.props.dialog.dialog.map((data, idx) => {
       return(
         <div key={idx}>
@@ -26,7 +22,7 @@ class Chapter extends Component {
     });
   }
 
-  render(){ 
+  render(){
     return (
       <div>
         <ChapterTitle title={this.props.dialog.title} />
