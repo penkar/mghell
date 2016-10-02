@@ -1,4 +1,4 @@
-import { CHANGE_CHAPTER, CHANGE_LINE } from '../constants';
+import { CHANGE_CHAPTER, CHANGE_LINE, SET_CHAPTERS } from '../constants';
 
 
 export function lineSkipAction(line){
@@ -14,3 +14,10 @@ export function changeChapter(chapter){
     chapter
   });
 };
+
+export function setChapters(chapters){
+  return({
+    type: SET_CHAPTERS,
+    chapters
+  })
+}

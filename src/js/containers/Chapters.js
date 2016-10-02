@@ -1,12 +1,24 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+
 import ChapterTitle from '../components/ChapterTitle';
 import Dialog from '../components/Dialog';
-import { connect } from 'react-redux'
+import { jsonChapterLoad } from '../utilities/onload';
+import { setChapters } from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
-const mapStateToProps = (state) => {
-  return (state);
+const mapStateToProps = (state) => {console.log(state)
+  return {
+    lineSkip: state.lineReducer,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setChapters: bindActionCreators(setChapters, dispatch),
+  }
 }
 
 class Chapters extends Component{
@@ -17,6 +29,11 @@ class Chapters extends Component{
       topOffset:0,
       offset:0,
     }
+  }
+
+  componentWillMount(){
+    let chapters = jsonChapterLoad(MGS)
+    this.props.setChapters(chapters);
   }
 
   mgsDialogues(){
@@ -51,4 +68,4 @@ class Chapters extends Component{
   }
 }
 
-export default connect(mapStateToProps)(Chapters)
+export default connect(mapStateToProps, mapDispatchToProps)(Chapters)

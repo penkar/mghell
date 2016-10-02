@@ -4,6 +4,7 @@ export const RESET_LINE = "RESET_LINE"
 export const CHANGE_LINE = "CHANGE_LINE"
 
 // Chapter Constants
+export const SET_CHAPTERS = "SET_CHAPTERS"
 export const CHANGE_CHAPTER = "CHANGE_CHAPTER"
 export const ADD_CHAPTER = "ADD_CHAPTER"
 export const RESET_CHAPTER = "RESET_CHAPTER"
