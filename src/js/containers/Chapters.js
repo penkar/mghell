@@ -9,7 +9,7 @@ import { setChapters } from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
-const mapStateToProps = (state) => {console.log(state)
+const mapStateToProps = (state) => {
   return {
     lineSkip: state.lineReducer,
   };
@@ -24,11 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 class Chapters extends Component{
   constructor(props){
     super(props)
-    this.state = {
-      height:window.innerHeight,
-      topOffset:0,
-      offset:0,
-    }
   }
 
   componentWillMount(){

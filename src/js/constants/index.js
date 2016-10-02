@@ -12,3 +12,7 @@ export const RESET_CHAPTER = "RESET_CHAPTER"
 // Filter Constants
 export const FILTER_CHARACTER = "FILTER_CHARACTER"
 export const FILTER_TERM = "FILTER_TERM"
+
+// Utility Constants
+export const SCROLL_CONST = "SCROLL_CONST"
+export const RESIZE_CONST = "RESIZE_CONST"
