@@ -46,7 +46,7 @@ class TopBuffer extends Component {
   }
 
   render(){
-    return <div style={{height:`${this.state.offset}px`}}></div>;
+    return <div style={{height:`${this.state.offset + 32}px`}}></div>;
   }
 }
 
