@@ -42,7 +42,7 @@ class Chapters extends Component{
     return chapterLines;
   }
 
-  render(){ console.log(this.props);
+  render(){
     return(
       <div>
         { ::this.mgsDialogues() }

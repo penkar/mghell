@@ -1,9 +1,9 @@
 'use strict'
 import { combineReducers } from 'redux'
-import lineSkip from './lineSkip'
+import lineReducer from './lineReducer'
 
 const mghellStore = combineReducers({
-  lineSkip,
+  lineReducer,
 });
 
 export default mghellStore

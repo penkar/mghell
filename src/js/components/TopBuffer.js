@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { lineSkipAction } from '../actions/Actions'
+import { lineSkipAction } from '../actions/index'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -35,7 +35,7 @@ class TopBuffer extends Component {
     this.setState({oneLine, height});
   }
 
-  scroll(){//console.log(this.state.offset);
+  scroll(){
     let { height, oneLine } = this.state
     let topOffset = window.pageYOffset;
     let { lineSkipAction } = this.props;
