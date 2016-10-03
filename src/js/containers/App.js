@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import Chapters from './Chapters';
 import Title from '../components/Title';
-import BottomBuffer from '../components/BottomBuffer';
 import { lineSkipAction, resizeAction } from '../actions/index'
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,16 +37,14 @@ class App extends Component{
 
   render(){
     return (
-      <div style={{paddingTop:`${this.props.offset.offset + 32}px`}}>
+      <div>
         <Title />
         <span style={{fontSize:'4vh'}}>
-        <Chapters />
+          <Chapters />
         </span>
-        <BottomBuffer />
       </div>
     )
   }
 }
-// <TopBuffer line={this.props.lineReducer} offset={this.props.offset}/>
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -11,6 +11,7 @@ import MGS from '../../script/mgs.json';
 
 const mapStateToProps = (state) => {
   return {
+    offset: state.utilityReducer,
     lineSkip: state.lineReducer,
   };
 }
@@ -24,11 +25,16 @@ const mapDispatchToProps = (dispatch) => {
 class Chapters extends Component{
   constructor(props){
     super(props)
+    this.state = {
+      total:0
+    }
   }
 
   componentWillMount(){
-    let chapters = jsonChapterLoad(MGS)
+    let chapters = jsonChapterLoad(MGS), total = 0;
+    chapters.forEach((data) => {total += data.line});
     this.props.setChapters(chapters);
+    this.setState({total})
   }
 
   mgsDialogues(){
@@ -38,8 +44,6 @@ class Chapters extends Component{
       let dialog = data.dialog;
       count++
       if(count > lineSkip){
-        // console.log('count', count)
-        // console.log('lineSkip', lineSkip)
         chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`} chapter={j}/>);
       }
       for(var i = 0; i < dialog.length; i++ ){
@@ -56,9 +60,18 @@ class Chapters extends Component{
     return chapterLines;
   }
 
+  style(){
+    let { lineSkip, offset } = this.props, { total } = this.state;
+    let { oneLine } = offset;
+    return({
+      paddingTop:`${ Math.min(offset.offset + 32, total * oneLine) }px`,
+      paddingBottom:`${ Math.min(total - offset.lineCount, 500) * oneLine }px`,
+    });
+  }
+
   render(){
     return(
-      <div id="content">
+      <div style={ ::this.style() } >
         { ::this.mgsDialogues() }
       </div>
     );
