@@ -38,6 +38,8 @@ class Chapters extends Component{
       let dialog = data.dialog;
       count++
       if(count > lineSkip){
+        // console.log('count', count)
+        // console.log('lineSkip', lineSkip)
         chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title`} chapter={j}/>);
       }
       for(var i = 0; i < dialog.length; i++ ){
@@ -56,7 +58,7 @@ class Chapters extends Component{
 
   render(){
     return(
-      <div>
+      <div id="content">
         { ::this.mgsDialogues() }
       </div>
     );

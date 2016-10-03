@@ -1,5 +1,5 @@
 'use strict'
-import { RESIZE_CONST, SCROLL_CONST} from '../constants/index.js'
+import { RESIZE_CONST, SCROLL_CONST, CHANGE_LINE} from '../constants/index.js'
 
 const initial = {
   offset: 0,
@@ -7,8 +7,10 @@ const initial = {
   height: window.innerHeight,
 }
 
-export default function lineReducer(state = initial, action){
+export default function utilityReducer(state = initial, action){
   switch (action.type) {
+    case CHANGE_LINE:
+      return Object.assign({}, state, action.utilities);
     case SCROLL_CONST:
       return Object.assign({}, state, action.scroll);
     case RESIZE_CONST:

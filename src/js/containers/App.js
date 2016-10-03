@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import Chapters from './Chapters';
 import Title from '../components/Title';
-import TopBuffer from '../components/TopBuffer';
 import BottomBuffer from '../components/BottomBuffer';
 import { lineSkipAction, resizeAction } from '../actions/index'
 
@@ -39,9 +38,8 @@ class App extends Component{
 
   render(){
     return (
-      <div>
+      <div style={{paddingTop:`${this.props.offset.offset + 32}px`}}>
         <Title />
-        { TopBuffer(this.props.offset.offset) }
         <span style={{fontSize:'4vh'}}>
         <Chapters />
         </span>
