@@ -5,7 +5,8 @@ import Line from './Line';
 
 class Dialog extends Component{
   static propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    idx: PropTypes.string,
   }
 
   constructor(props){
@@ -15,7 +16,7 @@ class Dialog extends Component{
   render(){
     let { data } = this.props;
     return(
-      <div>
+      <div key={this.props.idx}>
         <Character character={data.character} />
         <Line line={data.line}/>
       </div>

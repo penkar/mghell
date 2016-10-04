@@ -1,11 +1,14 @@
 import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { lineSkipAction } from '../actions/index'
 
-const mapStateToProps = (state) => {
+import { lineSkipAction } from '../../actions/index'
+import TitleChapter from './TitleChapter'
+
+const mapStateToProps = (state) => { console.log(state);
   return {
     chapters: state.chapterReducer,
+    oneLine: state.utilityReducer.oneLine,
   };
 }
 
@@ -14,8 +17,6 @@ const mapDispatchToProps = (dispatch) => {
     changeLine: bindActionCreators(lineSkipAction, dispatch),
   }
 }
-
-
 
 const styles = {
   titleblock: {
@@ -41,11 +42,13 @@ class TitleMenu extends Component {
   }
 
   chapters(){
-    if(!this.props.chapters){
+    let { changeLine, chapters, oneLine } = this.props;
+    let props = { changeLine, oneLine};
+    if(!chapters){
       return null;
     }
-    return this.props.chapters.map((data) => {
-      return (<li onClick={() => {this.props.changeLine(data.line)}} key={data.index}>{data.title}</li>);
+    return chapters.map((data) => {
+      return <TitleChapter data={data} {...props} key={data.index}  />
     });
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TitleMenu from './TitleMenu'
+import TitleMenu from './title/TitleMenu'
 
 const style = {
   header:{
