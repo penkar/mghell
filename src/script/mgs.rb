@@ -63,6 +63,7 @@ dialog = [];
   end
   if (current == $chapter) && (raw[idx-4] == $chapter)
     game.chapter_dialog(dialog)
+    dialog = []
     line = raw[idx-2].strip
     index = line.scan(/\d+\.\d+/).first
     title = line.sub(index, "").strip
