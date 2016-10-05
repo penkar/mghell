@@ -12,7 +12,7 @@ class Dialog
         if string.include?(" : ")
           name, line = string.split(" : ")
           @content.push({character:name.strip, line: line.strip})
-        else
+        elsif !string.strip.empty?
           @content.push({character:"action", line: string.strip})
         end
         string = ""
