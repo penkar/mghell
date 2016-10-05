@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import smoothScroll from '../../utilities/smoothScroll';
 
 export default class TitleChapter extends Component{
   static propTypes = {
@@ -13,8 +14,7 @@ export default class TitleChapter extends Component{
 
   scroll(){
     let {data, oneLine, changeLine} = this.props;
-    window.scrollTo(0, data.line * oneLine);
-    changeLine(data.line);
+    smoothScroll(oneLine * data.line);
   }
 
   render(){

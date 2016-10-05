@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { lineSkipAction } from '../../actions/index'
 import TitleChapter from './TitleChapter'
 
-const mapStateToProps = (state) => { console.log(state);
+const mapStateToProps = (state) => {
   return {
     chapters: state.chapterReducer,
     oneLine: state.utilityReducer.oneLine,
