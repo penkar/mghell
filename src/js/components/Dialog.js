@@ -14,11 +14,12 @@ class Dialog extends Component{
   }
 
   render(){
-    let { data } = this.props;
+    let { character, line } = this.props.data;
+    let bool = character !== 'action';
     return(
       <div key={this.props.idx} className="dialog">
-        <Character character={data.character} />
-        <Line line={data.line}/>
+        {Character(character)}
+        {Line(line, !bool)}
       </div>
     )
   }
