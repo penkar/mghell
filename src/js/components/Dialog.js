@@ -18,7 +18,7 @@ class Dialog extends Component{
     let bool = character !== 'action';
     return(
       <div key={this.props.idx} className="dialog">
-        {Character(character)}
+        {Character(bool && character)}
         {Line(line, !bool)}
       </div>
     )

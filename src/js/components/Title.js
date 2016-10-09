@@ -39,8 +39,8 @@ export default class Title extends Component {
       <div style={style.header}>
         <div style={style.title}>METAL GEAR HELL</div>
         <div style={style.menu} onClick={ ::this.toggleMenu }>
-          <span>View Options</span>
-          { this.state.menu && <TitleMenu toggleMenu={::this.toggleMenu} /> }
+          <span>Navigate</span>
+          { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }
         </div>
       </div>
     );

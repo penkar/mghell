@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = {
   titleblock: {
-    backgroundColor:'lightgray',
+    backgroundColor:'#844c4c',
     border:'1px solid',
     fontSize:'5vh',
     textAlign:'left',
