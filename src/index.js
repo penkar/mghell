@@ -8,7 +8,7 @@ import mghellStore from './js/reducers/index'
 const store = createStore(mghellStore);
 
 
-// import "!style!css!sass!./style/main.scss";
+require("./style/main.scss")
 
 function mgHELL(){
   return <Provider store={store}><App /></Provider>;
