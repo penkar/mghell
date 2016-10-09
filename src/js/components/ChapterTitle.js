@@ -5,8 +5,12 @@ let style = {
     width:'100%',
     textAlign:'left',
     paddingLeft:'10px',
-    color:'red',
-  }
+    color:'#9c1212',
+  },
+  title:{
+    fontFamily:'MGS1',
+    marginLeft:'10px',
+  },
 }
 
 class ChapterTitle extends Component {
@@ -19,7 +23,7 @@ class ChapterTitle extends Component {
     let {title, chapter} = this.props;
     return (
       <div style={style.titleStyle}>
-        Chapter {chapter}: {title}
+        Chapter {chapter}: <span style={style.title}>{title}</span>
       </div>
     )
   }

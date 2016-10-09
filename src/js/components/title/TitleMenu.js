@@ -20,16 +20,20 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = {
   titleblock: {
+    backgroundColor:'lightgray',
     border:'1px solid',
     fontSize:'5vh',
     textAlign:'left',
+  },
+  ul:{
+    listStyle:'none',
   },
   list: {
 
   },
   point:{
-    listStyleType:'none'
-  }
+    listStyleType:'none',
+  },
 }
 
 class TitleMenu extends Component {
@@ -55,7 +59,7 @@ class TitleMenu extends Component {
   render(){
     return(
       <div style={styles.titleblock} >
-        <ul>
+        <ul style={styles.ul} >
           {::this.chapters()}
         </ul>
       </div>

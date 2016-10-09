@@ -16,7 +16,7 @@ class Dialog extends Component{
   render(){
     let { data } = this.props;
     return(
-      <div key={this.props.idx}>
+      <div key={this.props.idx} className="dialog">
         <Character character={data.character} />
         <Line line={data.line}/>
       </div>

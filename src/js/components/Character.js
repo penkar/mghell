@@ -7,7 +7,7 @@ export default class Character extends Component {
 
   render(){
     return (
-      <span>{this.props.character}</span>
+      <div>{this.props.character}</div>
     )
   }
 }

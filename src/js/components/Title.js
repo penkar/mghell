@@ -9,8 +9,12 @@ const style = {
     top:'0px',
   },
   title:{
+    textAlign:'center',
     position:'absolute',
-    left:'0px',
+    left:'175px',
+    fontFamily:"MGS1",
+    color:'#f44336',
+    paddingTop:'15px',
   },
   menu:{
     cursor:'pointer',
