@@ -40,6 +40,7 @@ class Chapters extends Component{
 
   mgsDialogues(){
     let chapterLines = [], count = 0, { lineSkip, filter } = this.props;
+    let regex = new RegExp(filter, 'i');
     for(var j = 0; j < MGS.length; j++){
       if(chapterLines.length > 30){
         break;
@@ -51,11 +52,15 @@ class Chapters extends Component{
         chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title${count}`} chapter={j}/>);
       }
       for(var i = 0; i < dialog.length; i++ ){
+        let conv = dialog[i];
+        if(filter && conv.line.search(regex) === -1){
+          continue;
+        }
         count++
         if(chapterLines.length > 30){
           break;
         } else if(count > lineSkip){
-          chapterLines.push(<Dialog data={dialog[i]} key={`${j}_${i}_${count}`} idx={`${j}_${i}_${count}`} />);
+          chapterLines.push(<Dialog data={conv} key={`${j}_${i}_${count}`} idx={`${j}_${i}_${count}`} />);
         }
       }
     }
