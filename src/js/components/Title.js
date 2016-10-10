@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TitleMenu from './title/TitleMenu'
+import Filter from './title/Filter'
 
 const style = {
   header:{
@@ -38,6 +39,7 @@ export default class Title extends Component {
     return (
       <div style={style.header}>
         <div style={style.title}>METAL GEAR HELL</div>
+        <Filter />
         <div style={style.menu} onClick={ ::this.toggleMenu }>
           <span>Navigate</span>
           { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }

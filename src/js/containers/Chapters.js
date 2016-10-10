@@ -11,6 +11,7 @@ import MGS from '../../script/mgs.json';
 
 const mapStateToProps = (state) => {
   return {
+    filter: state.filterReducer,
     offset: state.utilityReducer,
     lineSkip: state.lineReducer,
   };
@@ -38,7 +39,7 @@ class Chapters extends Component{
   }
 
   mgsDialogues(){
-    let chapterLines = [], count = 0, { lineSkip } = this.props;
+    let chapterLines = [], count = 0, { lineSkip, filter } = this.props;
     for(var j = 0; j < MGS.length; j++){
       if(chapterLines.length > 30){
         break;
