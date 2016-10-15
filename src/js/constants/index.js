@@ -16,3 +16,4 @@ export const FILTER_TERM = "FILTER_TERM"
 // Utility Constants
 export const SCROLL_CONST = "SCROLL_CONST"
 export const RESIZE_CONST = "RESIZE_CONST"
+export const RESIZE_FONT = "RESIZE_FONT"

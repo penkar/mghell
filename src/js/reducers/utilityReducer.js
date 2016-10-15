@@ -1,4 +1,3 @@
-'use strict'
 import { RESIZE_CONST, SCROLL_CONST, CHANGE_LINE} from '../constants/index.js'
 
 const initial = {
