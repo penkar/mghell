@@ -9,12 +9,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const styles = {
-  input: {
-    backgroundColor:'transparent',
-  },
-}
-
 class Filter extends Component{
   change(e){
     this.props.filter(e.target.value);
@@ -22,7 +16,7 @@ class Filter extends Component{
 
   render(){
     return(
-      <input onChange={::this.change} style={styles.input}></input>
+      <input onChange={::this.change} style={this.props.style}></input>
     )
   }
 }

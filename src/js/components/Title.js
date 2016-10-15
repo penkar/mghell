@@ -4,15 +4,17 @@ import Filter from './title/Filter'
 
 const style = {
   header:{
-    width:'95%',
+    width:'100%',
+    backgroundColor:'black',
     fontSize:'32px',
     position:'fixed',
     top:'0px',
+    height:'70px',
   },
   title:{
     textAlign:'center',
     position:'absolute',
-    left:'175px',
+    left:'35px',
     fontFamily:"MGS1",
     color:'#f44336',
     paddingTop:'15px',
@@ -21,7 +23,15 @@ const style = {
     cursor:'pointer',
     textAlign:'right',
     position:'absolute',
-    right:'0px',
+    right:'35px',
+    top:'15px',
+  },
+  input: {
+    marginLeft:'400px',
+    color:'gray',
+    backgroundColor:'transparent',
+    marginTop:'15px',
+    height:'23px',
   },
 }
 
@@ -39,7 +49,7 @@ export default class Title extends Component {
     return (
       <div style={style.header}>
         <div style={style.title}>METAL GEAR HELL</div>
-        <Filter />
+        <Filter style={style.input} />
         <div style={style.menu} onClick={ ::this.toggleMenu }>
           <span>Navigate</span>
           { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }

@@ -71,7 +71,7 @@ class Chapters extends Component{
     let { lineSkip, offset } = this.props, { total } = this.state;
     let { oneLine } = offset;
     return({
-      paddingTop:`${ Math.min(offset.offset + 32, total * oneLine) }px`,
+      paddingTop:`${ Math.min(offset.offset + 70, total * oneLine) }px`,
       paddingBottom:`${ Math.min(total - offset.lineCount, 500) * oneLine }px`,
     });
   }
