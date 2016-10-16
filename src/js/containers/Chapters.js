@@ -34,7 +34,9 @@ class Chapters extends Component{
 
   componentWillMount(){
     let chapters = jsonChapterLoad(MGS), total = 0;
-    chapters.forEach((data) => {total += data.line});
+    chapters.forEach((data) => {
+      total = data.end
+    });
     this.props.setChapters(chapters);
     this.setState({total})
   }
