@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import { connect } from 'react-redux'
-import { filterTerm } from '../../actions/index'
+import { filterTerm } from '../../../actions/index'
 import { bindActionCreators } from 'redux';
 
 const mapDispatchToProps = (dispatch) => {

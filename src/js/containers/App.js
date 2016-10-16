@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import Chapters from './Chapters';
-import Title from '../components/Title';
+import Title from '../components/game_script/Title';
 import { lineSkipAction, resizeAction } from '../actions/index'
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,11 +1,16 @@
 import { FILTER_CHARACTER, FILTER_TERM } from '../constants/index';
 
-export default function filterReducer(state = "", action){
+const initial = {
+  filter: '',
+  name: '',
+}
+
+export default function filterReducer(state = initial, action){
   switch (action.type) {
     case FILTER_TERM:
-      return action.term;
+      return Object.assign({}, state, {filter: action.term});
     case FILTER_CHARACTER:
-      return action.character;
+      return Object.assign({}, state, {name: action.term});
     default:
       return state;
   }

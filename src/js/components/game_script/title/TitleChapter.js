@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react'
-import smoothScroll from '../../utilities/smoothScroll';
+import smoothScroll from '../../../utilities/smoothScroll';
 
 export default class TitleChapter extends Component{
   static propTypes = {

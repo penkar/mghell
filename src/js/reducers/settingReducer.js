@@ -6,7 +6,7 @@ const initial = {
 export default function settingReducer(state = initial, action){
   switch (action.type) {
     case RESIZE_FONT:
-      return Object.assign(state, {fontSize: action.size});
+      return Object.assign({}, state, {fontSize: action.size});
     default:
       return state;
   }

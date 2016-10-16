@@ -7,9 +7,9 @@ export function filterTerm(term){
   });
 };
 
-export function filterCharacter(character){
+export function filterCharacter(term){
   return({
     type: FILTER_CHARACTER,
-    character
+    term
   });
 };

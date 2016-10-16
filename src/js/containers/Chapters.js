@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
-import ChapterTitle from '../components/ChapterTitle';
-import Dialog from '../components/Dialog';
+import ChapterTitle from '../components/game_script/ChapterTitle';
+import Dialog from '../components/game_script/Dialog';
 import { jsonChapterLoad } from '../utilities/onload';
 import { setChapters } from '../actions/index'
 
@@ -40,7 +40,7 @@ class Chapters extends Component{
   }
 
   mgsDialogues(){
-    let chapterLines = [], count = 0, { lineSkip, filter } = this.props;
+    let chapterLines = [], count = 0, { lineSkip } = this.props, { filter, name } = this.props.filter;
     let regex = new RegExp(filter, 'i'), renderLines = 50;
     for(var j = 0; j < MGS.length; j++){
       if(chapterLines.length > renderLines){
@@ -55,6 +55,9 @@ class Chapters extends Component{
       for(var i = 0; i < dialog.length; i++ ){
         let conv = dialog[i];
         if(filter && conv.line.search(regex) === -1){
+          continue;
+        }
+        if(name && conv.character !== name){
           continue;
         }
         count++
@@ -78,7 +81,6 @@ class Chapters extends Component{
   }
 
   render(){
-    // console.log(this.props)
     return(
       <div key={this.props.size} style={ ::this.style() } >
         { ::this.mgsDialogues() }
