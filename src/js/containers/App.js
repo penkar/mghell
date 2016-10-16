@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
   return {
     offset: state.utilityReducer,
     lineReducer: state.lineReducer,
+    setting: state.settingReducer,
   };
 }
 
@@ -36,11 +37,12 @@ class App extends Component{
   }
 
   render(){
+    let { fontSize } = this.props.setting;
     return (
       <div>
         <Title />
-        <span style={{fontSize:'4vh'}}>
-          <Chapters />
+        <span style={{fontSize:`${100 / fontSize}vh`}}>
+          <Chapters/>
         </span>
       </div>
     )

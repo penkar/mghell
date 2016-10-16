@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
     filter: state.filterReducer,
     offset: state.utilityReducer,
     lineSkip: state.lineReducer,
+    size: state.settingReducer.fontSize,
   };
 }
 
@@ -40,9 +41,9 @@ class Chapters extends Component{
 
   mgsDialogues(){
     let chapterLines = [], count = 0, { lineSkip, filter } = this.props;
-    let regex = new RegExp(filter, 'i');
+    let regex = new RegExp(filter, 'i'), renderLines = 50;
     for(var j = 0; j < MGS.length; j++){
-      if(chapterLines.length > 30){
+      if(chapterLines.length > renderLines){
         break;
       }
       let data = MGS[j];
@@ -57,7 +58,7 @@ class Chapters extends Component{
           continue;
         }
         count++
-        if(chapterLines.length > 30){
+        if(chapterLines.length > renderLines){
           break;
         } else if(count > lineSkip){
           chapterLines.push(<Dialog data={conv} key={`${j}_${i}_${count}`} idx={`${j}_${i}_${count}`} />);
@@ -77,8 +78,9 @@ class Chapters extends Component{
   }
 
   render(){
+    // console.log(this.props)
     return(
-      <div style={ ::this.style() } >
+      <div key={this.props.size} style={ ::this.style() } >
         { ::this.mgsDialogues() }
       </div>
     );

@@ -2,18 +2,20 @@ import React, { PropTypes, Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { lineSkipAction } from '../../actions/index'
+import { lineSkipAction, settingSizeAction } from '../../actions/index'
 import TitleChapter from './TitleChapter'
 
 const mapStateToProps = (state) => {
   return {
     chapters: state.chapterReducer,
     oneLine: state.utilityReducer.oneLine,
+    settings: state.settingReducer,
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    sizeAction: bindActionCreators(settingSizeAction, dispatch),
     changeLine: bindActionCreators(lineSkipAction, dispatch),
   }
 }
@@ -56,10 +58,25 @@ class TitleMenu extends Component {
     });
   }
 
+  zoomOut(){
+    let{ fontSize } = this.props.settings;
+    this.props.sizeAction(fontSize + 4);
+  }
+
+  zoomIn(){
+    let{ fontSize } = this.props.settings;
+    this.props.sizeAction(fontSize - 4);
+  }
+
   render(){
     return(
       <div style={styles.titleblock} >
         <ul style={styles.ul} >
+          <li>
+            <span onClick={::this.zoomIn}>+</span>
+            &nbsp;Zoom&nbsp;
+            <span onClick={::this.zoomOut}>-</span>
+          </li>
           {::this.chapters()}
         </ul>
       </div>
