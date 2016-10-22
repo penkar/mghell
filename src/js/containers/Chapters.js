@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import ChapterTitle from '../components/game_script/ChapterTitle';
 import Dialog from '../components/game_script/Dialog';
 import { jsonChapterLoad } from '../utilities/onload';
-import { setChapters } from '../actions/index'
+import { setChapters, filterCharacter } from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    filterCharacter: bindActionCreators(filterCharacter, dispatch),
     setChapters: bindActionCreators(setChapters, dispatch),
   }
 }
@@ -42,7 +43,7 @@ class Chapters extends Component{
   }
 
   mgsDialogues(){
-    let chapterLines = [], count = 0, { lineSkip } = this.props, { filter, name } = this.props.filter;
+    let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, { filter, name } = this.props.filter;
     let regex = new RegExp(filter, 'i'), renderLines = 50;
     for(var j = 0; j < MGS.length; j++){
       if(chapterLines.length > renderLines){
@@ -66,7 +67,8 @@ class Chapters extends Component{
         if(chapterLines.length > renderLines){
           break;
         } else if(count > lineSkip){
-          chapterLines.push(<Dialog data={conv} key={`${j}_${i}_${count}`} idx={`${j}_${i}_${count}`} />);
+          let props = {filterCharacter, data:conv, ids:`${j}_${i}_${count}`}
+          chapterLines.push(<Dialog {...props} key={`${j}_${i}_${count}`} />);
         }
       }
     }

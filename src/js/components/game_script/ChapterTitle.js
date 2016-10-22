@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react';
 
 let style = {
   titleStyle:{
-    width:'100%',
+    margin:'0px',
     textAlign:'left',
     paddingLeft:'10px',
     color:'#9c1212',
+    backgroundColor:'lightslategrey',
   },
   title:{
-    fontFamily:'MGS1',
     marginLeft:'10px',
   },
 }

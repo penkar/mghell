@@ -10,7 +10,8 @@ export default function filterReducer(state = initial, action){
     case FILTER_TERM:
       return Object.assign({}, state, {filter: action.term});
     case FILTER_CHARACTER:
-      return Object.assign({}, state, {name: action.term});
+      let name = (state.name === action.term) ? '' : action.term;
+      return Object.assign({}, state, {name});
     default:
       return state;
   }
