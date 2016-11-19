@@ -13,10 +13,10 @@ body{
   color:silver;
   padding:0px;
   margin:0px;
-}
-
-.title-body{
-
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .title-bar{

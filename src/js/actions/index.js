@@ -1,7 +1,7 @@
 import { changeChapter, lineSkipAction, setChapters } from './LineActions'
 import { filterTerm, filterCharacter } from './FilterActions'
 import { scrollAction, resizeAction } from './UtilityActions'
-import { settingSizeAction } from './SettingActions'
+import { settingSizeAction, toggleFilterFind } from './SettingActions'
 
 export {
   setChapters,
@@ -12,4 +12,5 @@ export {
   scrollAction,
   resizeAction,
   settingSizeAction,
+  toggleFilterFind,
 }

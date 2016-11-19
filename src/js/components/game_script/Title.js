@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import TitleMenu from './title/TitleMenu'
 import Filter from './title/Filter'
 
@@ -36,6 +36,10 @@ const style = {
 }
 
 export default class Title extends Component {
+  static propTypes = {
+    filter: PropTypes.bool,
+  }
+
   constructor(props){
     super(props);
     this.state = {menu:false}
@@ -49,7 +53,7 @@ export default class Title extends Component {
     return (
       <div style={style.header}>
         <div style={style.title}>METAL GEAR HELL</div>
-        <Filter style={style.input} />
+        <Filter style={style.input} filterbool={this.props.filter}/>
         <div style={style.menu} onClick={ ::this.toggleMenu }>
           <span>Navigate</span>
           { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }

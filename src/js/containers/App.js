@@ -37,10 +37,10 @@ class App extends Component{
   }
 
   render(){
-    let { fontSize } = this.props.setting;
+    let { fontSize, filter } = this.props.setting;
     return (
       <div>
-        <Title />
+        <Title filter={filter}/>
         <span style={{fontSize:`${100 / fontSize}vh`}}>
           <Chapters/>
         </span>
