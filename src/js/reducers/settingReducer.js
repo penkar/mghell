@@ -1,7 +1,7 @@
 import { RESIZE_FONT, FILTER_FIND } from '../constants/index.js'
 const initial = {
   fontSize:40,
-  filter: false,
+  filter: true,
 }
 
 export default function settingReducer(state = initial, action){
