@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
     offset: state.utilityReducer,
     lineSkip: state.lineReducer,
     size: state.settingReducer.fontSize,
+    findFilter: state.settingReducer.filter,
   };
 }
 
@@ -43,12 +44,50 @@ class Chapters extends Component{
   }
 
   mgsDialogues(){
+    /* if(!this.props.filter){
+
+    } else */ if (this.props.findFilter){
+      return ::this.filterLines();
+    } else {
+      return ::this.findLines();
+    }
+  }
+
+  findLines(){
+    let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, { filter } = this.props.filter;
+    let regex = new RegExp(filter, 'i'), renderLines = 50;
+
+    for( var j = 0; j < MGS.length; j++ ){
+      if(chapterLines.length > renderLines) break;
+
+      let data = MGS[j];
+      let dialog = data.dialog;
+      if(lineSkip > (count + dialog.length)){console.log('count', count);
+        count += (dialog.length + 1);
+        continue;
+      } else {
+        for( var i = (lineSkip - count); i < dialog.length; i++){
+          count++
+          if ( count < lineSkip ) continue;
+          if ( chapterLines.length > renderLines ) break;
+
+          let conv = dialog[i];
+          if(!chapterLines.length || conv.line.search(regex) !== -1){
+            let props = {filterCharacter, data:conv, ids:`${j}_${i}_${count}`}
+            chapterLines.push(<Dialog {...props} key={`${j}_${i}_${count}`} />);
+          }
+        }
+      }
+    }
+    return chapterLines;
+  }
+
+  filterLines(){
     let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, { filter, name } = this.props.filter;
     let regex = new RegExp(filter, 'i'), renderLines = 50;
     for(var j = 0; j < MGS.length; j++){
-      if(chapterLines.length > renderLines){
-        break;
-      }
+      if(chapterLines.length > renderLines) break;
+
       let data = MGS[j];
       let dialog = data.dialog;
       count++
@@ -57,12 +96,10 @@ class Chapters extends Component{
       }
       for(var i = 0; i < dialog.length; i++ ){
         let conv = dialog[i];
-        if(filter && conv.line.search(regex) === -1){
-          continue;
-        }
-        if(name && conv.character !== name){
-          continue;
-        }
+
+        if(filter && conv.line.search(regex) === -1) continue;
+        if(name && conv.character !== name) continue;
+
         count++
         if(chapterLines.length > renderLines){
           break;

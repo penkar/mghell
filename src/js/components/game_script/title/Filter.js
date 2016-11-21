@@ -32,7 +32,7 @@ class Filter extends Component{
     this.props.toggleFilter(!this.props.filterbool);
   }
 
-  render(){console.log(this.props);
+  render(){
     return(
       <span>
         <input onChange={::this.change} style={this.props.style}></input>
