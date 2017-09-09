@@ -1,26 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-const style = {
-  div:{
-    cursor:'pointer',
-  },
+import React from 'react'
+export function Character ({bool, character, filterCharacter}) {
+  function click() {filterCharacter(character)};
+  return <div onClick={click} className='pointer'>{bool && character}</div>
 }
-
-class Character extends Component{
-  static propTypes = {
-    bool: PropTypes.bool,
-    character: PropTypes.string,
-    filterCharacter: PropTypes.func,
-  }
-
-  click(){
-    let { filterCharacter, character } = this.props;
-    filterCharacter(character);
-  }
-
-  render(){
-    let { bool, character, filterCharacter } = this.props;
-    return <div onClick={::this.click} style={style.div}>{bool && character}</div>
-  }
-}
-
-export default Character

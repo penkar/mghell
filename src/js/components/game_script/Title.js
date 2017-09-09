@@ -2,39 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import TitleMenu from './title/TitleMenu'
 import Filter from './title/Filter'
 
-const style = {
-  header:{
-    width:'100%',
-    backgroundColor:'black',
-    fontSize:'32px',
-    position:'fixed',
-    top:'0px',
-    height:'70px',
-  },
-  title:{
-    textAlign:'center',
-    position:'absolute',
-    left:'35px',
-    fontFamily:"MGS1",
-    color:'#f44336',
-    paddingTop:'15px',
-  },
-  menu:{
-    cursor:'pointer',
-    textAlign:'right',
-    position:'absolute',
-    right:'35px',
-    top:'15px',
-  },
-  input: {
-    marginLeft:'400px',
-    color:'gray',
-    backgroundColor:'transparent',
-    marginTop:'15px',
-    height:'23px',
-  },
-}
-
 export default class Title extends Component {
   static propTypes = {
     filter: PropTypes.bool,
@@ -51,10 +18,10 @@ export default class Title extends Component {
 
   render(){
     return (
-      <div style={style.header}>
-        <div style={style.title}>METAL GEAR HELL</div>
-        <Filter style={style.input} filterbool={this.props.filter}/>
-        <div style={style.menu} onClick={ ::this.toggleMenu }>
+      <div className='title-component'>
+        <div className='title'>METAL GEAR HELL</div>
+        <Filter classname='input' filterbool={this.props.filter}/>
+        <div className='menu' onClick={ ::this.toggleMenu }>
           <span>Navigate</span>
           { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }
         </div>

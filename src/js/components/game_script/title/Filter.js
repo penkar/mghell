@@ -10,15 +10,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const style = {
-  button:{
-    cursor:'pointer',
-    fontSize: '0.5em',
-    color:'blue',
-    paddingLeft:'0.5em',
-  }
-}
-
 class Filter extends Component{
   static propTypes = {
     filterbool: PropTypes.bool,
@@ -35,8 +26,8 @@ class Filter extends Component{
   render(){
     return(
       <span>
-        <input onChange={::this.change} style={this.props.style}></input>
-        <span style={style.button} onClick={ ::this.toggle }>
+        <input onChange={::this.change} className={this.props.classname}></input>
+        <span className='filter-button' onClick={ ::this.toggle }>
           {this.props.filterbool && "Filter" || "Find Next"}
         </span>
       </span>

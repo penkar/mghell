@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { lineSkipAction, settingSizeAction } from '../../../actions/index'
-import TitleChapter from './TitleChapter'
+import {TitleChapter} from './TitleChapter'
 
 const mapStateToProps = (state) => {
   return {
@@ -31,7 +31,6 @@ const styles = {
     listStyle:'none',
   },
   list: {
-
   },
   point:{
     listStyleType:'none',
@@ -54,7 +53,7 @@ class TitleMenu extends Component {
       return null;
     }
     return chapters.map((data) => {
-      return <TitleChapter data={data} {...props} key={data.index}  />
+      return TitleChapter({data, key:data.index, changeLine, oneLine});
     });
   }
 

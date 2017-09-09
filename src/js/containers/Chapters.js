@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
-import ChapterTitle from '../components/game_script/ChapterTitle';
-import Dialog from '../components/game_script/Dialog';
+import {ChapterTitle} from '../components/game_script/ChapterTitle';
+import {Dialog} from '../components/game_script/Dialog';
+
 import { jsonChapterLoad } from '../utilities/onload';
 import { setChapters, filterCharacter } from '../actions/index'
 
@@ -73,8 +74,7 @@ class Chapters extends Component{
 
           let conv = dialog[i];
           if(!chapterLines.length || conv.line.search(regex) !== -1){
-            let props = {filterCharacter, data:conv, ids:`${j}_${i}_${count}`}
-            chapterLines.push(<Dialog {...props} key={`${j}_${i}_${count}`} />);
+            chapterLines.push( Dialog({filterCharacter, data:conv, key:`${j}_${i}_${count}`}) );
           }
         }
       }
@@ -92,7 +92,7 @@ class Chapters extends Component{
       let dialog = data.dialog;
       count++
       if(count > lineSkip){
-        chapterLines.push(<ChapterTitle title={data.title} key={`${j}_title${count}`} chapter={j}/>);
+        chapterLines.push( ChapterTitle({title: data.title, key:`${j}_title${count}`, chapter:j}) );
       }
       for(var i = 0; i < dialog.length; i++ ){
         let conv = dialog[i];
@@ -104,8 +104,7 @@ class Chapters extends Component{
         if(chapterLines.length > renderLines){
           break;
         } else if(count > lineSkip){
-          let props = {filterCharacter, data:conv, ids:`${j}_${i}_${count}`}
-          chapterLines.push(<Dialog {...props} key={`${j}_${i}_${count}`} />);
+          chapterLines.push( Dialog({filterCharacter, data:conv, ids:`${j}_${i}_${count}`, key:`${j}_${i}_${count}`}) );
         }
       }
     }
