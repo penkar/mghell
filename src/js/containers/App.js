@@ -13,9 +13,9 @@ const mapDispatchToProps = (dispatch) => {
       filter: bindActionCreators(actions.filterTerm, dispatch),
       lineSkipAction: bindActionCreators(actions.lineSkipAction, dispatch),
       resizeAction: bindActionCreators(actions.resizeAction, dispatch),
-      toggleFilter: bindActionCreators(actions.toggleFilterFind, dispatch),
-      sizeAction: bindActionCreators(actions.settingSizeAction, dispatch),
-      changeLine: bindActionCreators(actions.lineSkipAction, dispatch),
+      toggleFilterFind: bindActionCreators(actions.toggleFilterFind, dispatch),
+      settingSizeAction: bindActionCreators(actions.settingSizeAction, dispatch),
+      lineSkipAction: bindActionCreators(actions.lineSkipAction, dispatch),
       changeSetting: bindActionCreators(actions.changeSetting, dispatch),
     },
     dispatch,
@@ -53,6 +53,7 @@ class App extends Component{
     return (
       <div>
         { Title({settings, filter, actions, chapters, oneLine}) }
+        
         <span style={{fontSize:`${100 / fontSize}vh`}}>
           <Chapters/>
         </span>

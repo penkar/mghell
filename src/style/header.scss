@@ -1,0 +1,96 @@
+#title-component {
+  background-color:black;
+  width: calc(100vw - 2rem);
+  padding: 0rem 1rem;
+
+  position:fixed;
+  top:0px;
+  height:70px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 1.5rem;
+    font-family:"MGS1";
+    color:#f44336;
+  }
+
+  .filter-component-input, .filter-component-input:focus {
+    margin-left: 1rem;
+    color: white;
+    height: 24px;
+    border: 0px;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    border-radius: 0px;
+    min-width: 15rem;
+  }
+
+  .filter-button {
+    padding: 4px 16px;
+    background-color: white;
+    border-radius: 4px;
+    color: black;
+    border: gray 1px solid;
+    margin-left: 16px;
+    font-size: 1rem;
+  }
+  //
+  .chapter-list {
+    text-align:right;
+    position: relative;
+
+    .menu-title {
+      position: absolute;
+      right: 0px;
+      width: max-content;
+      font-size: 1.25rem;
+    }
+  }
+
+  .title-menu-component {
+    background-color:#844c4c;
+    border:1px solid;
+    font-size:1rem;
+    text-align:left;
+    top: 1.25rem;
+    position: absolute;
+    right: 0px;
+
+    opacity: 0;
+    transition: opacity 2s;
+
+    &.trans {
+      opacity: 1;
+    }
+
+    .list {
+      list-style: none;
+      margin: 0px;
+      padding: 6px 24px;
+
+      .item {
+        color: silver;
+        width: max-content;
+        transition: color 1s;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .point {
+      list-style-type: none;
+    }
+  }
+}

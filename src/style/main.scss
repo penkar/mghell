@@ -3,6 +3,8 @@
   src: url(mgsfont/METAG___.TTF)
 }
 
+@import './header.scss';
+
 .mgs-font{
   font-family: MGS1;
 }
@@ -60,53 +62,4 @@ body{
   font-size: 0.5em;
   color: blue;
   padding-left: 0.5em;
-}
-
-.title-component {
-  width:100%;
-  background-color:black;
-  font-size:32px;
-  position:fixed;
-  top:0px;
-  height:70px;
-
-  .title {
-    text-align:center;
-    position:absolute;
-    left:35px;
-    font-family:"MGS1";
-    color:#f44336;
-    padding-top:15px;
-  }
-
-  .menu {
-    cursor:pointer;
-    text-align:right;
-    position:absolute;
-    right:35px;
-    top:15px;
-  }
-
-  .input {
-    margin-left:400px;
-    color:gray;
-    background-color:transparent;
-    margin-top:15px;
-    height:23px;
-  }
-}
-
-.title-menu-component {
-  background-color:#844c4c;
-  border:1px solid;
-  font-size:5vh;
-  text-align:left;
-
-  .list {
-    list-style: none;
-  }
-
-  .point {
-    list-style-type: none;
-  }
 }

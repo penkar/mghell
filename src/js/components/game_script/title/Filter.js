@@ -1,13 +1,18 @@
 import React from 'react'
 
-export function Filter({actions, filterbool, classname}) {
+export function Filter({actions, filter}) {
   function change(e){ actions.filter(e.target.value); }
-  function toggle(){ actions.toggleFilter(!filterbool); }
+  function toggle(){ actions.toggleFilterFind(!filter); }
   return(
     <span>
-      <input onChange={change} className={classname} />
+      <input
+        placeholder='Find...'
+        onChange={change}
+        className='filter-component-input'
+        />
+
       <span className='filter-button' onClick={ toggle }>
-        { (filterbool && "Filter") || "Find Next" }
+        { (filter && "Filter") || "Find Next" }
       </span>
     </span>
   );

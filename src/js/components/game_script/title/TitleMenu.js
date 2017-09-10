@@ -1,24 +1,20 @@
-import React, { PropTypes, Component } from 'react'
-import { connect } from 'react-redux';
-
-import { lineSkipAction, settingSizeAction } from '../../../actions/index'
+import React from 'react'
 import {TitleChapter} from './TitleChapter'
 
 export function TitleMenu({actions, toggleMenu, chapters, oneLine, settings}) {
   if(!chapters) return null;
 
-  function zoomIn(){actions.sizeAction(settings.fontSize - 4);}
-  function zoomOut(){actions.sizeAction(settings.fontSize + 4);}
+  function zoomIn(){actions.settingSizeAction(settings.fontSize - 4);}
+  function zoomOut(){actions.settingSizeAction(settings.fontSize + 4);}
 
-  let { changeLine } = actions;
   let chapterArray = chapters.map(function(data) {
-    return TitleChapter({data, key:data.index, changeLine, oneLine});
+    return TitleChapter({data, key:data.index, oneLine});
   });
 
   return (
-    <div className='title-menu-component'>
+    <div className='title-menu-component trans'>
       <ul className='list'>
-        <li>
+        <li className='pointer item'>
           <span onClick={zoomIn}>+</span>
           &nbsp;Zoom&nbsp;
           <span onClick={zoomOut}>-</span>
