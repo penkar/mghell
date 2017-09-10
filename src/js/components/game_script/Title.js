@@ -1,31 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import TitleMenu from './title/TitleMenu'
-import Filter from './title/Filter'
+import React from 'react'
+import {Filter, TitleMenu} from './title/index.js'
 
-export default class Title extends Component {
-  static propTypes = {
-    filter: PropTypes.bool,
-  }
+export function Title ({filter, actions, chapters, oneLine, settings}) {
+  function toggleMenu() {actions.changeSetting({key:'navigate', value:!settings.navigate})}
 
-  constructor(props){
-    super(props);
-    this.state = {menu:false}
-  }
+  return (
+    <div className='title-component'>
+      <div className='title'>METAL GEAR HELL</div>
 
-  toggleMenu(){
-    this.setState({menu: !this.state.menu})
-  }
+      { Filter({classname:'input', filterbool:filter, actions}) }
 
-  render(){
-    return (
-      <div className='title-component'>
-        <div className='title'>METAL GEAR HELL</div>
-        <Filter classname='input' filterbool={this.props.filter}/>
-        <div className='menu' onClick={ ::this.toggleMenu }>
-          <span>Navigate</span>
-          { this.state.menu && <TitleMenu toggleMenu={ ::this.toggleMenu } /> }
-        </div>
+      <div className='menu' onClick={toggleMenu}>
+        <span>Navigate</span>
+
+        { settings.navigate && TitleMenu({toggleMenu: toggleMenu, actions, chapters, oneLine, settings}) }
       </div>
-    );
-  }
+    </div>
+  );
 }

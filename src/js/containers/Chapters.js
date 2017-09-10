@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
-import {ChapterTitle} from '../components/game_script/ChapterTitle';
-import {Dialog} from '../components/game_script/Dialog';
+import {ChapterTitle, Dialog} from '../components/game_script';
 
 import { jsonChapterLoad } from '../utilities/onload';
-import { setChapters, filterCharacter } from '../actions/index'
+import * as actions from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
@@ -22,8 +21,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    filterCharacter: bindActionCreators(filterCharacter, dispatch),
-    setChapters: bindActionCreators(setChapters, dispatch),
+    filterCharacter: bindActionCreators(actions.filterCharacter, dispatch),
+    setChapters: bindActionCreators(actions.setChapters, dispatch),
   }
 }
 

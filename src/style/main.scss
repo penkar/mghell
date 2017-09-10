@@ -95,3 +95,18 @@ body{
     height:23px;
   }
 }
+
+.title-menu-component {
+  background-color:#844c4c;
+  border:1px solid;
+  font-size:5vh;
+  text-align:left;
+
+  .list {
+    list-style: none;
+  }
+
+  .point {
+    list-style-type: none;
+  }
+}

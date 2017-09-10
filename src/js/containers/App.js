@@ -3,13 +3,22 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import Chapters from './Chapters';
-import Title from '../components/game_script/Title';
-import { lineSkipAction, resizeAction } from '../actions/index'
+import {Title} from '../components/game_script';
+
+import * as actions from '../actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    lineSkipAction: bindActionCreators(lineSkipAction, dispatch),
-    resizeAction: bindActionCreators(resizeAction, dispatch),
+    actions:{
+      filter: bindActionCreators(actions.filterTerm, dispatch),
+      lineSkipAction: bindActionCreators(actions.lineSkipAction, dispatch),
+      resizeAction: bindActionCreators(actions.resizeAction, dispatch),
+      toggleFilter: bindActionCreators(actions.toggleFilterFind, dispatch),
+      sizeAction: bindActionCreators(actions.settingSizeAction, dispatch),
+      changeLine: bindActionCreators(actions.lineSkipAction, dispatch),
+      changeSetting: bindActionCreators(actions.changeSetting, dispatch),
+    },
+    dispatch,
   }
 }
 
@@ -17,7 +26,9 @@ const mapStateToProps = (state) => {
   return {
     offset: state.utilityReducer,
     lineReducer: state.lineReducer,
-    setting: state.settingReducer,
+    settings: state.settingReducer,
+    chapters: state.chapterReducer,
+    oneLine: state.utilityReducer.oneLine,
   };
 }
 
@@ -29,18 +40,19 @@ class App extends Component{
   componentDidMount(){
     window.addEventListener('resize', ::this.resize);
     window.addEventListener('scroll', ::this.resize);
-    this.props.resizeAction();
+    this.props.actions.resizeAction();
   }
 
   resize(){
-    this.props.resizeAction();
+    this.props.actions.resizeAction();
   }
 
   render(){
-    let { fontSize, filter } = this.props.setting;
+    let {settings, actions, chapters, oneLine} = this.props;
+    let { fontSize, filter } = this.props.settings;
     return (
       <div>
-        <Title filter={filter}/>
+        { Title({settings, filter, actions, chapters, oneLine}) }
         <span style={{fontSize:`${100 / fontSize}vh`}}>
           <Chapters/>
         </span>
