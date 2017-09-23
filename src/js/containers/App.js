@@ -7,7 +7,7 @@ import {Title} from '../components/game_script';
 
 import * as actions from '../actions'
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps(dispatch) {
   return {
     actions:{
       filter: bindActionCreators(actions.filterTerm, dispatch),
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     offset: state.utilityReducer,
     lineReducer: state.lineReducer,
@@ -53,7 +53,7 @@ class App extends Component{
     return (
       <div>
         { Title({settings, filter, actions, chapters, oneLine}) }
-        
+
         <span style={{fontSize:`${100 / fontSize}vh`}}>
           <Chapters/>
         </span>

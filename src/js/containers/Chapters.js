@@ -9,7 +9,7 @@ import * as actions from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     filter: state.filterReducer,
     offset: state.utilityReducer,
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps(dispatch) {
   return {
     filterCharacter: bindActionCreators(actions.filterCharacter, dispatch),
     setChapters: bindActionCreators(actions.setChapters, dispatch),
@@ -29,9 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 class Chapters extends Component{
   constructor(props){
     super(props)
-    this.state = {
-      total:0
-    }
+    this.state = {total:0,}
   }
 
   componentWillMount(){
