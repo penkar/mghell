@@ -1,4 +1,2 @@
-import React from 'react'
-export function Line ({line, action}){
-  return <span style={action ? {fontStyle:'oblique'} : {}}>{line}</span>;
-}
+// import React from 'react'
+// export const Line = ({line, action}) => <span style={action ? {fontStyle:'oblique'} : {}}>{line}</span>;

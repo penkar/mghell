@@ -3,12 +3,14 @@ import {Character} from './Character';
 import {Line} from './Line';
 
 export function Dialog ({data, key, filterCharacter}) {
-  let {character, line} = data;
-  let bool = character !== 'action';
+  const {character, line} = data;
+  const click = () => filterCharacter(character);
   return (
     <div key={key} className="dialog">
-      { Character({bool, character, filterCharacter}) }
-      { Line({line, bool:!bool}) }
+      <div onClick={click} className='pointer'>
+        { (character !== 'action') && character }
+      </div>
+      <span>{line}</span>
     </div>
   );
 }
