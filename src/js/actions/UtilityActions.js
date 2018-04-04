@@ -1,11 +1,9 @@
 import { RESIZE_CONST, SCROLL_CONST} from '../constants/index.js'
 
-export function scrollAction(offset){
-  return ({
-    type: SCROLL_CONST,
-    offset
-  })
-}
+export const scrollAction = (offset) => ({
+  type: SCROLL_CONST,
+  offset,
+});
 
 export function resizeAction(){
   let height = window.innerHeight, topOffset = window.pageYOffset;

@@ -1,14 +1,9 @@
 import { RESIZE_FONT, FILTER_FIND, CHANGE_SETTING } from '../constants/index.js'
 
-export function settingSizeAction(size){
-  size  = Math.min(Math.max(size, 20), 80)
-  return ({type:RESIZE_FONT,size});
+export const settingSizeAction = (size) => {
+  size  = Math.min(Math.max(size, 20), 80);
+  return ({type:RESIZE_FONT, size});
 }
 
-export function toggleFilterFind(filter){
-  return ({type:FILTER_FIND,filter,});
-}
-
-export function changeSetting({key, value}) {
-  return ({type:CHANGE_SETTING, key, value});
-};
+export const toggleFilterFind = (filter) => ({type:FILTER_FIND,filter,});
+export const changeSetting = ({key, value}) => ({type:CHANGE_SETTING, key, value});

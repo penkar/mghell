@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
@@ -9,22 +9,18 @@ import * as actions from '../actions/index'
 
 import MGS from '../../script/mgs.json';
 
-function mapStateToProps(state) {
-  return {
-    filter: state.filterReducer,
-    offset: state.utilityReducer,
-    lineSkip: state.lineReducer,
-    size: state.settingReducer.fontSize,
-    findFilter: state.settingReducer.filter,
-  };
-}
+const mapStateToProps = (state) => ({
+  filter: state.filterReducer,
+  offset: state.utilityReducer,
+  lineSkip: state.lineReducer,
+  size: state.settingReducer.fontSize,
+  findFilter: state.settingReducer.filter,
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    filterCharacter: bindActionCreators(actions.filterCharacter, dispatch),
-    setChapters: bindActionCreators(actions.setChapters, dispatch),
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  filterCharacter: bindActionCreators(actions.filterCharacter, dispatch),
+  setChapters: bindActionCreators(actions.setChapters, dispatch),
+});
 
 class Chapters extends Component{
   constructor(props){
@@ -41,17 +37,7 @@ class Chapters extends Component{
     this.setState({total})
   }
 
-  mgsDialogues(){
-    /* if(!this.props.filter){
-
-    } else */ if (this.props.findFilter){
-      return ::this.filterLines();
-    } else {
-      return ::this.findLines();
-    }
-  }
-
-  findLines(){
+  findLines = () => {
     let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, { filter } = this.props.filter;
     let regex = new RegExp(filter, 'i'), renderLines = 50;
 
@@ -79,7 +65,7 @@ class Chapters extends Component{
     return chapterLines;
   }
 
-  filterLines(){
+  filterLines = () => {
     let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, { filter, name } = this.props.filter;
     let regex = new RegExp(filter, 'i'), renderLines = 50;
     for(var j = 0; j < MGS.length; j++){
@@ -108,7 +94,7 @@ class Chapters extends Component{
     return chapterLines;
   }
 
-  style(){
+  style = () => {
     let { lineSkip, offset } = this.props, { total } = this.state;
     let { oneLine } = offset;
     return({
@@ -119,8 +105,9 @@ class Chapters extends Component{
 
   render(){
     return(
-      <div key={this.props.size} style={ ::this.style() } >
-        { ::this.mgsDialogues() }
+      <div key={this.props.size} style={ this.style() } >
+        { this.props.findFilter && this.filterLines() }
+        { !this.props.findFilter && this.findLines() }
       </div>
     );
   }
