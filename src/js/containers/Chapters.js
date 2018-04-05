@@ -103,14 +103,12 @@ class Chapters extends Component{
     });
   }
 
-  render(){
-    return(
-      <div key={this.props.size} style={ this.style() } >
-        { this.props.findFilter && this.filterLines() }
-        { !this.props.findFilter && this.findLines() }
-      </div>
-    );
-  }
+  render = () => (
+    <div key={this.props.size} style={ this.style() } >
+      { this.props.findFilter && this.filterLines() }
+      { !this.props.findFilter && this.findLines() }
+    </div>
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chapters)

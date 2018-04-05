@@ -1,5 +1,5 @@
 import React from 'react';
-import smoothScroll from '../../../utilities/smoothScroll';
+import { smoothScroll } from '../../../utilities/smoothScroll';
 
 export const TitleChapter = ({data, oneLine}) => {
   const scroll = () => smoothScroll(oneLine * data.line);

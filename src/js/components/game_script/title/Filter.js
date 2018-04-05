@@ -1,9 +1,9 @@
 import React from 'react'
 
 export function Filter({actions, filter}) {
-  function change(e){ actions.filter(e.target.value); }
+  function change({target}){ actions.filter(target.value); }
   function toggle(){ actions.toggleFilterFind(!filter); }
-  return(
+  return (
     <span>
       <input
         placeholder='Find...'
