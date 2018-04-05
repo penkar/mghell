@@ -1,13 +1,12 @@
-'use strict'
-import { RESET_LINE, CHANGE_LINE, RESIZE_CONST} from '../constants/index.js'
+import * as actions from '../constants/index.js'
 
 export default function lineReducer(state = 0, action){
   switch (action.type) {
-    case RESIZE_CONST:
+    case actions.RESIZE_CONST:
       return action.resize.lineCount
-    case CHANGE_LINE:
+    case actions.CHANGE_LINE:
       return action.line;
-    case RESET_LINE:
+    case actions.RESET_LINE:
       return 0;
     default:
       return state;

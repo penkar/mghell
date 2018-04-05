@@ -1,4 +1,4 @@
-import { RESIZE_CONST, SCROLL_CONST, CHANGE_LINE} from '../constants/index.js'
+import * as actions from '../constants/index.js'
 
 const initial = {
   offset: 0,
@@ -8,11 +8,11 @@ const initial = {
 
 export default function utilityReducer(state = initial, action){
   switch (action.type) {
-    case CHANGE_LINE:
+    case actions.CHANGE_LINE:
       return Object.assign({}, state, action.utilities);
-    case SCROLL_CONST:
+    case actions.SCROLL_CONST:
       return Object.assign({}, state, action.scroll);
-    case RESIZE_CONST:
+    case actions.RESIZE_CONST:
       return Object.assign({}, state, action.resize);;
     default:
       return state;

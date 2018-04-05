@@ -1,4 +1,4 @@
-import { FILTER_CHARACTER, FILTER_TERM } from '../constants/index';
+import * as actions from '../constants/index';
 
 const initial = {
   filter: '',
@@ -7,9 +7,9 @@ const initial = {
 
 export default function filterReducer(state = initial, action){
   switch (action.type) {
-    case FILTER_TERM:
+    case actions.FILTER_TERM:
       return Object.assign({}, state, {filter: action.term});
-    case FILTER_CHARACTER:
+    case actions.FILTER_CHARACTER:
       let name = (state.name === action.term) ? '' : action.term;
       return Object.assign({}, state, {name});
     default:

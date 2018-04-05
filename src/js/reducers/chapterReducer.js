@@ -1,14 +1,14 @@
-import { CHANGE_CHAPTER, ADD_CHAPTER, RESET_CHAPTER, SET_CHAPTERS } from '../constants/index.js'
+import * as actions from '../constants/index.js'
 
 export default function chapterReducer(state = [], action){
   switch (action.type) {
-    case CHANGE_CHAPTER:
+    case actions.CHANGE_CHAPTER:
       return action.line;
-    case SET_CHAPTERS:
+    case actions.SET_CHAPTERS:
       return action.chapters;
-    case ADD_CHAPTER:
+    case actions.ADD_CHAPTER:
       return 0;
-    case RESET_CHAPTER:
+    case actions.RESET_CHAPTER:
     default:
       return state;
   }
