@@ -1,6 +1,5 @@
 import React from 'react'
-import {TitleChapter} from './TitleChapter'
-
+import {smoothScroll} from '../../utilities/smoothScroll'
 export function TitleMenu({actions, toggleMenu, chapters, oneLine, settings}) {
   if(!chapters) return null;
 
@@ -15,7 +14,10 @@ export function TitleMenu({actions, toggleMenu, chapters, oneLine, settings}) {
           &nbsp;Zoom&nbsp;
           <span onClick={zoomOut}>-</span>
         </li>
-        { chapters.map( (data) => TitleChapter({data, oneLine}) )  }
+        { chapters.map( ({line, index, title}) =>
+          <li className='item pointer' key={index} onClick={() => smoothScroll(oneLine * line)}>
+            {title}
+          </li> ) }
       </ul>
     </div>
   );

@@ -16,16 +16,13 @@ export function lineSkipAction(line){
   });
 };
 
-export function changeChapter(chapter){
-  return ({
-    type: CHANGE_CHAPTER,
-    chapter
-  });
-};
+export const changeChapter = (chapter) => ({
+  type: CHANGE_CHAPTER,
+  chapter
+});
 
-export function setChapters(chapters){
-  return({
-    type: SET_CHAPTERS,
-    chapters
-  })
-}
+
+export const setChapters = (chapters) => ({
+  type: SET_CHAPTERS,
+  chapters
+});
