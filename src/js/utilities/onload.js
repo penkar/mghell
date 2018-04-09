@@ -1,4 +1,3 @@
-'use strict'
 export const jsonChapterLoad = (jsonData) => {
   let chapterData = [], count = 0;
   jsonData.map((data, index) => {
