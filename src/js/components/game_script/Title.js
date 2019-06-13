@@ -19,7 +19,7 @@ export const Title = ({filter, actions, chapters, oneLine, settings}) =>
       </span>
     </div>
     <div className='section chapter-list' onClick={
-      actions.changeSetting({key:'navigate', value:!settings.navigate})
+      () => actions.changeSetting({key:'navigate', value:!settings.navigate})
       }>
       <span className='menu-title pointer'>Chapter List</span>
       { settings.navigate && chapters && TitleMenu({actions, chapters, oneLine, settings}) }

@@ -59,18 +59,20 @@ class App extends Component{
     this.props.actions.resizeAction();
   }
 
-  render = () => (
-    <div>
-      { Title({...this.props }) }
+  render(){ 
+    return (
+      <div>
+        { Title({...this.props }) }
 
-      <span style={{fontSize:`${100 / this.props.fontSize}vh`}}>
-        <div key={this.props.size} style={ this._style() } >
-          { this.props.findFilter && this._filterLines() }
-          { !this.props.findFilter && this._findLines() }
-        </div>
-      </span>
-    </div>
-  )
+        <span style={{fontSize:`${100 / this.props.fontSize}vh`}}>
+          <div key={this.props.size} style={ this._style() } >
+            { this.props.findFilter && this._filterLines() }
+            { !this.props.findFilter && this._findLines() }
+          </div>
+        </span>
+      </div>
+    )
+  }
 
   _findLines = () => {
     let chapterLines = [], count = 0, { lineSkip, filterCharacter } = this.props, filter = this.props.filterReducer;
