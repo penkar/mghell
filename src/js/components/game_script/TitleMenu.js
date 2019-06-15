@@ -1,5 +1,6 @@
-import React from 'react'
-import {smoothScroll} from '../../utilities/smoothScroll'
+import React from 'react';
+import {smoothScroll} from '../../utilities/smoothScroll';
+
 export const TitleMenu = ({actions, chapters, oneLine, settings}) =>
   <div className='title-menu-component trans'>
     <ul className='list'>

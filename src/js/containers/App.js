@@ -112,7 +112,11 @@ class App extends Component{
       let dialog = data.dialog;
       count++
       if(count > lineSkip){
-        chapterLines.push( ChapterTitle({title: data.title, key:`${j}_title${count}`, chapter:j}) );
+        chapterLines.push( 
+          <div className='chapter-title-component' key={`${j}_title${count}`}>
+            Chapter {j}: <span className='chapter-title-span'>{data.title}</span>
+          </div>
+        )
       }
       for(var i = 0; i < dialog.length; i++ ){
         let conv = dialog[i];
