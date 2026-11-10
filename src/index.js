@@ -1,20 +1,14 @@
-import React from 'react'
-import { createStore } from 'redux'
-import { render } from 'react-dom'
+import { legacy_createStore as createStore } from 'redux'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 
 import App from './js/containers/App'
 import mghellStore from './js/reducers/index'
 
+import './style/main.scss'
+
 const store = createStore(mghellStore);
 
-require("./style/main.scss")
-
-function mgHELL(){
-  return <Provider store={store}><App /></Provider>;
-}
-
-render(
-  mgHELL(),
-  document.getElementById('mount')
+createRoot(document.getElementById('mount')).render(
+  <Provider store={store}><App /></Provider>
 );

@@ -1,6 +1,6 @@
-import * as actions from '../constants/index.js'
+import * as actions from '../constants/index.js';
 
-export default function chapterReducer(state = [], action){
+export default function chapterReducer(state = [], action) {
   switch (action.type) {
     case actions.CHANGE_CHAPTER:
       return action.line;

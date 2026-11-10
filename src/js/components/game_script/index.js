@@ -1,2 +1,2 @@
-export * from './Dialog'
-export * from './Title'
+export * from './Dialog';
+export * from './Title';
