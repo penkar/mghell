@@ -1,11 +1,10 @@
 import { CHANGE_CHAPTER, CHANGE_LINE, SET_CHAPTERS } from '../constants';
 
 export const lineSkipAction = (line) => {
-  let height = window.innerHeight,
-    topOffset = window.pageYOffset;
-  let oneLine = height / 25;
-  let offset = Math.max(0, oneLine * line);
-  let utilities = {
+  const height = window.innerHeight;
+  const oneLine = height / 25;
+  const offset = Math.max(0, oneLine * line);
+  const utilities = {
     oneLine,
     height,
     offset,

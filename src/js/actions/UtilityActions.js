@@ -6,12 +6,12 @@ export const scrollAction = (offset) => ({
 });
 
 export const resizeAction = () => {
-  let height = window.innerHeight,
+  const height = window.innerHeight,
     topOffset = window.pageYOffset;
-  let oneLine = height / 25;
-  let lineCount = Math.floor(topOffset / oneLine);
-  let offset = Math.max(0, oneLine * lineCount);
-  let resize = {
+  const oneLine = height / 25;
+  const lineCount = Math.floor(topOffset / oneLine);
+  const offset = Math.max(0, oneLine * lineCount);
+  const resize = {
     oneLine: height / 25,
     height,
     offset,

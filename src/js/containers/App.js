@@ -1,175 +1,108 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions';
-import { Title } from '../components/game_script';
-import { Dialog } from '../components/game_script';
-import { jsonChapterLoad } from '../utilities/onload';
+import * as actionCreators from '../actions';
+import { Dialog, Title } from '../components/game_script';
+import { jsonChapterTransform } from '../utilities/onload';
+import { getVisibleLines } from '../utilities/renderLines';
 
 import MGS from '../../script/mgs.json';
 
-const mapDispatchToProps = (dispatch) => ({
-  filterCharacter: bindActionCreators(actions.filterCharacter, dispatch),
-  setChapters: bindActionCreators(actions.setChapters, dispatch),
-  actions: {
-    changeSetting: bindActionCreators(actions.changeSetting, dispatch),
-    filter: bindActionCreators(actions.filterTerm, dispatch),
-    lineSkipAction: bindActionCreators(actions.lineSkipAction, dispatch),
-    resizeAction: bindActionCreators(actions.resizeAction, dispatch),
-    settingSizeAction: bindActionCreators(actions.settingSizeAction, dispatch),
-    toggleFilterFind: bindActionCreators(actions.toggleFilterFind, dispatch),
-  },
-  dispatch,
-});
+const RENDER_LINES = 50;
 
-const mapStateToProps = (state) => ({
-  offset: state.utilityReducer,
-  lineReducer: state.lineReducer,
-  settings: state.settingReducer,
-  chapters: state.chapterReducer,
-  oneLine: state.utilityReducer.oneLine,
-  filter: state.settingReducer.filter,
-  fontSize: state.settingReducer.fontSize,
+const App = () => {
+  const dispatch = useDispatch();
+  const offset = useSelector((state) => state.utilityReducer);
+  const startLine = useSelector((state) => state.lineReducer);
+  const settings = useSelector((state) => state.settingReducer);
+  const chapters = useSelector((state) => state.chapterReducer);
+  const filterReducer = useSelector((state) => state.filterReducer);
+  const actions = useMemo(
+    () =>
+      bindActionCreators(
+        {
+          changeSetting: actionCreators.changeSetting,
+          filter: actionCreators.filterTerm,
+          filterCharacter: actionCreators.filterCharacter,
+          resizeAction: actionCreators.resizeAction,
+          setChapters: actionCreators.setChapters,
+          settingSizeAction: actionCreators.settingSizeAction,
+          toggleFilterFind: actionCreators.toggleFilterFind,
+        },
+        dispatch,
+      ),
+    [dispatch],
+  );
+  const { oneLine } = offset;
+  const [total, setTotal] = useState(0);
+  const { resizeAction } = actions;
 
-  filterReducer: state.filterReducer,
-  lineSkip: state.lineReducer,
-  size: state.settingReducer.fontSize,
-  findFilter: state.settingReducer.filter,
-});
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { total: 0 };
-  }
-
-  UNSAFE_componentWillMount() {
-    let chapters = jsonChapterLoad(MGS),
-      total = 0;
-    chapters.forEach((data) => {
-      total = data.end;
-    });
-    this.props.setChapters(chapters);
-    this.setState({ total });
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this._resize);
-    window.addEventListener('scroll', this._resize);
-    this.props.actions.resizeAction();
-  }
-
-  render() {
-    return (
-      <div>
-        {Title({ ...this.props })}
-
-        <span style={{ fontSize: `${100 / this.props.fontSize}vh` }}>
-          <div key={this.props.size} style={this._style()}>
-            {this.props.findFilter && this._filterLines()}
-            {!this.props.findFilter && this._findLines()}
-          </div>
-        </span>
-      </div>
-    );
-  }
-
-  _findLines = () => {
-    let chapterLines = [],
-      count = 0,
-      { lineSkip, filterCharacter } = this.props,
-      filter = this.props.filterReducer;
-    let regex = new RegExp(filter, 'i'),
-      renderLines = 50;
-
-    for (var j = 0; j < MGS.length; j++) {
-      if (chapterLines.length > renderLines) break;
-
-      let data = MGS[j];
-      let dialog = data.dialog;
-      if (lineSkip > count + dialog.length) {
-        console.log('count', count);
-        count += dialog.length + 1;
-        continue;
-      } else {
-        for (var i = lineSkip - count; i < dialog.length; i++) {
-          count++;
-          if (count < lineSkip) continue;
-          if (chapterLines.length > renderLines) break;
-
-          let conv = dialog[i];
-          if (!chapterLines.length || conv.line.search(regex) !== -1) {
-            chapterLines.push(
-              Dialog({
-                filterCharacter,
-                data: conv,
-                key: `${j}_${i}_${count}`,
-              }),
-            );
-          }
-        }
-      }
-    }
-    return chapterLines;
+  const bodyStyle = {
+    paddingTop: `${Math.min(offset.offset + 70, total * offset.oneLine)}px`,
+    paddingBottom: `${Math.min(total - offset.lineCount, 500) * offset.oneLine}px`,
   };
 
-  _filterLines = () => {
-    let chapterLines = [],
-      count = 0,
-      { lineSkip, filterCharacter } = this.props,
-      { filter, name } = this.props.filter;
-    let regex = new RegExp(filter, 'i'),
-      renderLines = 50;
-    for (var j = 0; j < MGS.length; j++) {
-      if (chapterLines.length > renderLines) break;
+  const visibleLines = useMemo(
+    () =>
+      getVisibleLines(
+        MGS,
+        startLine,
+        filterReducer,
+        settings.filter,
+        RENDER_LINES,
+      ),
+    [filterReducer, settings.filter, startLine],
+  );
 
-      let data = MGS[j];
-      let dialog = data.dialog;
-      count++;
-      if (count > lineSkip) {
-        chapterLines.push(
-          <div className="chapter-title-component" key={`${j}_title${count}`}>
-            Chapter {j}:{' '}
-            <span className="chapter-title-span">{data.title}</span>
-          </div>,
-        );
-      }
-      for (var i = 0; i < dialog.length; i++) {
-        let conv = dialog[i];
+  useEffect(() => {
+    window.addEventListener('resize', resizeAction);
+    window.addEventListener('scroll', resizeAction);
+    resizeAction();
 
-        if (filter && conv.line.search(regex) === -1) continue;
-        if (name && conv.character !== name) continue;
-
-        count++;
-        if (chapterLines.length > renderLines) {
-          break;
-        } else if (count > lineSkip) {
-          chapterLines.push(
-            Dialog({
-              filterCharacter,
-              data: conv,
-              ids: `${j}_${i}_${count}`,
-              key: `${j}_${i}_${count}`,
-            }),
-          );
-        }
-      }
-    }
-    return chapterLines;
-  };
-
-  _style = () => {
-    let { lineSkip, offset } = this.props,
-      { total } = this.state;
-    let { oneLine } = offset;
-    return {
-      paddingTop: `${Math.min(offset.offset + 70, total * oneLine)}px`,
-      paddingBottom: `${Math.min(total - offset.lineCount, 500) * oneLine}px`,
+    return () => {
+      window.removeEventListener('resize', resizeAction);
+      window.removeEventListener('scroll', resizeAction);
     };
-  };
+  }, [resizeAction]);
 
-  _resize = () => this.props.actions.resizeAction();
-}
+  useEffect(() => {
+    if (!MGS.length) return;
+    const transformedChapters = jsonChapterTransform(MGS);
+    actions.setChapters(transformedChapters);
+    setTotal(transformedChapters.at(-1)?.end ?? 0);
+  }, [actions]);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+  return (
+    <div>
+      <Title
+        filter={settings.filter}
+        actions={actions}
+        chapters={chapters}
+        oneLine={oneLine}
+        settings={settings}
+      />
+      <div style={{ fontSize: `${100 / settings.fontSize}vh` }}>
+        <div className="dialog" style={bodyStyle}>
+          {visibleLines.map((line) =>
+            line.type === 'chapter' ? (
+              <span key={line.key}>
+                Chapter {line.index}:{' '}
+                <span className="chapter-title-span">{line.title}</span>
+              </span>
+            ) : (
+              <Dialog
+                character={line.character}
+                filterCharacter={actions.filterCharacter}
+                key={line.key}
+                line={line.line}
+              />
+            ),
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;

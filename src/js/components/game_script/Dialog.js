@@ -1,11 +1,8 @@
-export const Dialog = ({ data, key, filterCharacter }) => {
-  const { character, line } = data;
-  return (
-    <div key={key} className="dialog">
-      <div onClick={() => filterCharacter(character)} className="pointer">
-        {character !== 'action' && character}
-      </div>
-      <span>{line}</span>
+export const Dialog = ({ line, character, filterCharacter }) => (
+  <>
+    <div onClick={() => filterCharacter(character)} className="pointer">
+      {character !== 'action' && character}
     </div>
-  );
-};
+    <div>{line}</div>
+  </>
+);

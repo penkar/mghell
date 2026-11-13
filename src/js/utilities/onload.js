@@ -1,14 +1,11 @@
-export const jsonChapterLoad = (jsonData) => {
-  let chapterData = [],
-    count = 0;
-  jsonData.map((data, index) => {
-    chapterData.push({
+export const jsonChapterTransform = (jsonData) =>
+  jsonData.reduce((chapters, data, index) => {
+    const line = index === 0 ? 0 : chapters[index - 1].end;
+    chapters.push({
       index: index + 1,
-      line: count,
+      line,
       title: data.title,
-      end: count + data.dialog.length + 1,
+      end: line + data.dialog.length + 1,
     });
-    count += 1 + data.dialog.length;
-  });
-  return chapterData;
-};
+    return chapters;
+  }, []);

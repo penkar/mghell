@@ -1,44 +1,37 @@
 @font-face {
   font-family: MGS1;
-  src: url(mgsfont/METAG___.TTF)
+  src: url(mgsfont/METAG___.TTF);
 }
 
 @import './header.scss';
 
-.mgs-font{
+.mgs-font {
   font-family: MGS1;
 }
 
-body{
+body {
   font-family: sans-serif;
   background-color: #404040;
-  color:silver;
-  padding:0px;
-  margin:0px;
+  color: silver;
+  padding: 0px;
+  margin: 0px;
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   user-select: none;
 }
 
-.title-bar{
-  padding-top:10px;
-  padding-left:10px;
-  padding-right:10px;
+.title-bar {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.dialog{
-  display: flex;
-
-  div {
-    font-variant: small-caps;
-    display: inline-block;
-    width: 10%;
-  }
-  span {
-    display: inline-block;
-    width: 85%;
-  }
+.dialog {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  row-gap: 4px;
+  column-gap: 12px;
 }
 
 .pointer {
@@ -46,14 +39,14 @@ body{
 }
 
 .chapter-title-component {
-  margin:0px;
-  text-align:left;
-  padding-left:10px;
-  color:#9c1212;
-  background-color:lightslategrey;
+  margin: 0px;
+  text-align: left;
+  padding-left: 10px;
+  color: #9c1212;
+  background-color: lightslategrey;
 
   .chapter-title-span {
-    margin-left:10px;
+    margin-left: 10px;
   }
 }
 
